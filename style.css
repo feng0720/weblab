@@ -1,0 +1,36 @@
+:root{
+    --back: #3232f0;
+    --grey: #d1f2e3;
+}
+body{
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: antiquewhite;
+    border: 2px solid #000000;
+}
+.navstyle{
+    background-color: var(--back);
+    color: var(--grey);
+    text-align: center;
+}
+h1{
+    margin: auto;
+    border: 2px  red;
+    text-align: center;
+}
+img{
+    display: block;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    padding: 20px;
+    text-align: center;
+}
+.u-textCenter{
+    text-align: center;
+    color: #000000;
+}
+
+.u-flex{
+    display: flex;
+    flex-direction: column;
+}
