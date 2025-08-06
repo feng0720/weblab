@@ -34,3 +34,10 @@ img{
     display: flex;
     flex-direction: column;
 }
+.but{
+    background-color: #000000;
+    color: red;
+    max-width: 300px;
+    margin: 0 auto;
+    min-height: 50px;
+}
