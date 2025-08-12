@@ -1,0 +1,56 @@
+/* 全局居中布局 */
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f9f9f9;
+}
+
+/* 内容容器 */
+#container {
+  max-width: 400px;
+  width: 90%;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+/* 输入框和按钮的间距 */
+#text-input {
+  padding: 8px;
+  width: 80%;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+#check-btn {
+  padding: 8px 16px;
+  font-size: 16px;
+  background-color: #4cafef;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#check-btn:hover {
+  background-color: #3a9dd9;
+}
+
+/* 结果显示区域美化 */
+#result {
+  margin-top: 15px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #f1f8ff;
+  border-radius: 5px;
+  font-size: 16px;
+  min-height: 24px; /* 保证空时高度一致 */
+  color: #333;
+}
+
