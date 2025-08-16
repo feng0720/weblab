@@ -1,28 +1,18 @@
-const text = document.getElementById("text-input");
-const button = document.getElementById("check-btn");
-const res = document.getElementById("result");
+const number = document.getElementById("number");
+const btn = document.getElementById("convert-btn");
+const res = document.getElementById("output");
+const chars = [
+  
+];
 
-const changeToValid = ()=>{
-  const string = text.value;
-  const str = string.split("").filter((s)=>{
-    return (s>='a'&&s<='z')||(s>='A'&&s<='Z')||(s>='0'&&s<='9');
-  }).join("").toLowerCase();
-  return str;
-}
-const func = ()=>{
-  const str = changeToValid();
-  const r_str = str.split("").reverse().join("");
-  return str === r_str;
-}
-
-button.addEventListener("click",()=>{
-  const len = text.value.length;
-  if(len === 0) alert("Please input a value");
-  else if(len === 1) res.innerText = (`${text.value} is a palindrome`);
-  else res.innerText = func() ? `${text.value} is a palindrome` : `${text.value} is not a palindrome`;
-})
-text.addEventListener("keydown",(event)=>{
-  if(event.key==="Enter"){
-    button.click();
+btn.addEventListener("click",()=>{
+  if(!number.value){
+    res.innerText = "Please enter a valid number";
+  }
+  else if(number.value<=0){
+    res.innerText = "Please enter a number greater than or equal to 1";
+  }
+  else if(number.value>=4000){
+    res.innerText = "Please enter a number less than or equal to 3999";
   }
 })
