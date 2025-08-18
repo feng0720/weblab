@@ -1,113 +1,64 @@
-const number = document.getElementById("number");
-const btn = document.getElementById("convert-btn");
-const res = document.getElementById("output");
+const sortButton = document.getElementById("sort");
 
-const func = ()=>{
-  let v = parseInt(number.value);
-  let nums = [];
-  while(v>0){
-    nums.unshift(v%10);
-    v = Math.floor(v/10);
-  }
-  let str = "";
-  //function1--forEach--it can not change the array beacause the parameters just a copy
-  // nums.forEach((n,i)=>{
-  //   nums[i]*=10**(nums.length-1-i);
-  // })
-  //function2--map--it can change the array
-  nums = nums.map((n,i)=>n*=10**(nums.length-1-i));
-  // console.log(nums);
-  const len = nums.length;
-  for (let i of nums){
-    if(i>=1000){
-      while(i){
-        str+='M';
-        i-=1000;
-      }
-    }else if(i>=500&&i<1000){
-      if(i===900){
-        str+='CM';
-      }
-      else{
-        str+='D';
-        while((i-500)){
-          str+='C';
-          i-=100;
-        }
-      }
-    }else if(i>=100&&i<500){
-      if(i===400){
-        str+='CD';
-      }
-      else {
-        while(i){
-          str+='C';
-          i-=100;
-        }
-      }
-    }else if(i>=50&&i<100){
-      if(i===90){
-        str+='XC';
-      }else{
-        str+='L';
-        i-=50;
-        while(i){
-          str+='X';
-          i-=10;
-        }
-      }
-    }else if(i>=10&&i<50){
-      if(i===40){
-        str+='XL';
-      }else{
-        while(i){
-          str+='X';
-          i-=10;
-        }
-      }
-    }else if(i>=5&&i<10){
-      if(i===9){
-        str+='IX';
-      }else{
-        str+='V';
-        i-=5;
-        while(i){
-          str+='I';
-          i--;
-        }
-      }
-    }
-    else if(i>=1&&i<5){
-      if(i===4){
-        str+='IV';
-      }else{
-        while(i){
-          str+='I';
-          i--;
-        }
+const sortInputArray = (event)=>{
+  event.preventDefault();
+  const inputValues = [...document.getElementsByClassName("values-dropdown")].map((dropdown)=>Number(dropdown.value));
+  // const sortedValues = bubbleSort(inputValues);
+  // const sortedValues = selectionSort(inputValues);
+  // const sortedValues = insertionSort(inputValues);
+  const sortedValues = inputValues.sort((a,b)=>{
+    return a-b;
+  }); // 这里sort函数会自动把数组里面的元素转化成字符串的格式进行比较但是我们这里需要的是数值的比较所以需要传入回调函数通过a-b||b-a使其强制进行数值比较a-b就是升序反之降序
+  updateUI(sortedValues);
+}
+
+const updateUI = (array = [])=>{
+  array.forEach((num,i)=>{
+    const outputValueNode = document.getElementById(`output-value-${i}`);
+    outputValueNode.innerText = num;
+  });
+
+}
+
+const bubbleSort = (array)=>{
+  for(let i=0;i<array.length;i++){
+    for(let j = 0;j<array.length-1;j++){
+      if(array[j]>array[j+1]){
+        const temp = array[j];
+        array[j] = array[j+1];
+        array[j+1] = temp;
       }
     }
   }
-  return str;
+  return array;
 }
 
-const judge = ()=>{
-  if(!number.value){
-    res.innerText = "Please enter a valid number";
+const selectionSort = (array)=>{
+  for(let i = 0;i<array.length;i++){
+    let minIndex = i;
+    for(let j = i+1;j<array.length;j++){
+      if(array[j]<array[minIndex]){
+        minIndex = j;
+      }
+    }
+    const temp = array[minIndex];
+    array[minIndex] = array[i];
+    array[i] = temp;
   }
-  else if(number.value<=0){
-    res.innerText = "Please enter a number greater than or equal to 1";
-  }
-  else if(number.value>=4000){
-    res.innerText = "Please enter a number less than or equal to 3999";
-  }
-  else{
-    res.innerText = func();
-  }
+  return array;
 }
-btn.addEventListener("click",judge)
-number.addEventListener("keydown",(e)=>{
-  if(e.key==="Enter"){
-    judge();
+
+const insertionSort = (array)=>{
+  for(let i = 1;i<array.length;i++){
+    const currValue = array[i];
+    let j = i-1;
+    while(j>=0&&array[j]>currValue){
+      array[j+1] = array[j];
+      j--;
+    }
+    array[j+1] = currValue;
   }
-})
+  return array;
+}
+
+sortButton.addEventListener("click",sortInputArray);
