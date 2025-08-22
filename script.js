@@ -24,8 +24,24 @@ const median = (nums)=>{
   return isEven(length)?(nums[Math.ceil(middle)]+nums[Math.ceil(middle+1)])/2:nums[Math.ceil(middle)];
 }
 const spreadsheetFunctions = {
+  "": (el)=>el,
   sum,average,median,
-  even: nums=>nums.filter(isEven)
+  even: nums=>nums.filter(isEven),
+  someeven: nums=>nums.some(isEven),
+  everyeven: nums=>nums.every(isEven),
+  firsttwo: nums=>nums.slice(0,2),
+  lattwo: nums=>nums.slice(nums.length-2,nums.length),
+  has2: nums=>nums.includes(2),
+  increment: nums=>nums.map(el=>el+1),
+  random: nums=>{
+    const max = nums[0]>nums[1]?nums[0]:nums[1];
+    const min = nums[0]<nums[1]?nums[0]:nums[1];
+    return Math.floor(Math.random()*(max-min+1))+min;
+  },
+  // random: ([x,y])=>Math.floor(Math.random()*y+x),
+  range: ([x,y])=>range(x,y),
+  // range: nums=>range(...nums),
+  nodupes: nums=>[...new Set(nums)]
 }
 
 const applyFunction = (str)=>{
